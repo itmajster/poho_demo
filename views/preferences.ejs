@@ -1,5 +1,4 @@
 <!-- views/preferences.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,103 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee Preferences</title>
     <style>
-        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Coffee Preferences</h1>
-    <form action="/preferences" method="POST">
-        <label for="brewingMethod">Brewing Method:</label>
-        <select name="brewingMethod" id="brewingMethod">
-            <option value="filter">Filter</option>
-            <option value="pods">Pods</option>
-            <option value="espresso">Espresso</option>
-            <option value="moka">Moka</option>
-            <option value="batch brew">Batch Brew</option>
-            <option value="french press">French Press</option>
-            <option value="cascara/tea">Cascara/Tea</option>
-        </select>
-        <br>
+    <div class="container">
+        <h1>Coffee Preferences</h1>
+        <form action="/preferences" method="POST">
+            <label for="brewingMethod">Brewing Method:</label>
+            <select name="brewingMethod" id="brewingMethod">
+                <option value="filter">Filter</option>
+                <option value="pods">Pods</option>
+                <option value="espresso">Espresso</option>
+                <option value="moka">Moka</option>
+                <option value="batch brew">Batch Brew</option>
+                <option value="french press">French Press</option>
+                <option value="cascara/tea">Cascara/Tea</option>
+            </select>
+            <br>
 
-        <label for="coffeeExperienceLevel">Coffee Experience Level:</label>
-        <select name="coffeeExperienceLevel" id="coffeeExperienceLevel">
-            <option value="newbie">Newbie</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
-            <option value="nerd">Nerd</option>
-        </select>
-        <br>
+            <label for="coffeeExperienceLevel">Coffee Experience Level:</label>
+            <select name="coffeeExperienceLevel" id="coffeeExperienceLevel">
+                <option value="newbie">Newbie</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="nerd">Nerd</option>
+            </select>
+            <br>
 
-        <label for="roastLevel">Roast Level:</label>
-        <select name="roastLevel" id="roastLevel">
-            <option value="light">Light</option>
-            <option value="medium">Medium</option>
-            <option value="dark">Dark</option>
-            <option value="i do not care">I Don't Care</option>
-        </select>
-        <br>
+            <label for="roastLevel">Roast Level:</label>
+            <select name="roastLevel" id="roastLevel">
+                <option value="light">Light</option>
+                <option value="medium">Medium</option>
+                <option value="dark">Dark</option>
+                <option value="i do not care">I Don't Care</option>
+            </select>
+            <br>
 
-        <label for="flavorProfile">Flavor Profile:</label>
-        <select name="flavorProfile" id="flavorProfile">
-            <option value="regular/classic">Regular/Classic</option>
-            <option value="fruity">Fruity</option>
-            <option value="chocolate/sweat">Chocolate/Sweet</option>
-            <option value="floral">Floral</option>
-            <option value="acid">Acid</option>
-            <option value="nutty">Nutty</option>
-        </select>
-        <br>
+            <label for="flavorProfile">Flavor Profile:</label>
+            <select name="flavorProfile" id="flavorProfile">
+                <option value="regular/classic">Regular/Classic</option>
+                <option value="fruity">Fruity</option>
+                <option value="chocolate/sweat">Chocolate/Sweet</option>
+                <option value="floral">Floral</option>
+                <option value="acid">Acid</option>
+                <option value="nutty">Nutty</option>
+            </select>
+            <br>
 
-        <label for="origin">Origin:</label>
-        <select name="origin" id="origin">
-            <option value="africa">Africa</option>
-            <option value="south america">South America</option>
-            <option value="asia">Asia</option>
-            <option value="central america">Central America</option>
-            <option value="no preferencies">No Preferences</option>
-        </select>
-        <br>
+            <label for="origin">Origin:</label>
+            <select name="origin" id="origin">
+                <option value="africa">Africa</option>
+                <option value="south america">South America</option>
+                <option value="asia">Asia</option>
+                <option value="central america">Central America</option>
+                <option value="no preferencies">No Preferences</option>
+            </select>
+            <br>
 
-        <label for="coffeeType">Coffee Type:</label>
-        <select name="coffeeType" id="coffeeType">
-            <option value="regular">Regular</option>
-            <option value="decaf">Decaf</option>
-        </select>
-        <br>
+            <label for="coffeeType">Coffee Type:</label>
+            <select name="coffeeType" id="coffeeType">
+                <option value="regular">Regular</option>
+                <option value="decaf">Decaf</option>
+            </select>
+            <br>
 
-        <label for="intensity">Intensity:</label>
-        <select name="intensity" id="intensity">
-            <option value="mild">Mild</option>
-            <option value="balanced">Balanced</option>
-            <option value="intense/bold">Intense/Bold</option>
-            <option value="whatever">Whatever</option>
-        </select>
-        <br>
+            <label for="intensity">Intensity:</label>
+            <select name="intensity" id="intensity">
+                <option value="mild">Mild</option>
+                <option value="balanced">Balanced</option>
+                <option value="bold">Intense/Bold</option>
+                <option value="whatever">Whatever</option>
+            </select>
+            <br>
 
-        <label for="coffeePerDay">Coffee Per Day:</label>
-        <select name="coffeePerDay" id="coffeePerDay">
-            <option value="one">One</option>
-            <option value="two">Two</option>
-            <option value="more">More</option>
-        </select>
-        <br>
+            <label for="coffeePerDay">Coffee Per Day:</label>
+            <select name="coffeePerDay" id="coffeePerDay">
+                <option value="one">One</option>
+                <option value="two">Two</option>
+                <option value="more">More</option>
+            </select>
+            <br>
 
-        <label for="bonus">Bonus:</label>
-        <select name="bonus" id="bonus">
-            <option value="surprise me I want to discover new flavors">Surprise me, I want to discover new flavors</option>
-            <option value="ok i want to try maybe one more similar coffee">OK, I want to try maybe one more similar coffee</option>
-            <option value="Nah I am boring and will stick with one coffee">Nah, I am boring and will stick with one coffee</option>
-        </select>
-        <br>
+            <label for="bonus">Bonus:</label>
+            <select name="bonus" id="bonus">
+                <option value="surprise me I want to discover new flavors">Surprise me, I want to discover new flavors</option>
+                <option value="ok i want to try maybe one more similar coffee">OK, I want to try maybe one more similar coffee</option>
+                <option value="Nah I am boring and will stick with one coffee">Nah, I am boring and will stick with one coffee</option>
+            </select>
+            <br>
 
-        <!-- Add more preference fields here if needed -->
+            <!-- Add more preference fields here if needed -->
 
-        <button type="submit">Submit Preferences</button>
-    </form>
+            <button type="submit">Submit Preferences</button>
+        </form>
+    </div>
+
+    <div class="back-btn">
+        <a href="/">
+            <button>Back to Home</button>
+        </a>
+    </div>
     
-    <a href="/">
-        <button>Back to Home</button>
-    </a>
-
 </body>
 </html>

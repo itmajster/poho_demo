@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 // Define the Coffee schema
 const coffeeSchema = new mongoose.Schema({
+    id: { type: String, required: true },
     brand: { type: String, required: true },
     name: { type: String, required: true, unique: true },
     brewingMethod: { type: String, enum: ['filter', 'pods', 'espresso', 'moka', 'batch brew', 'french press', 'cascara/tea'], required: true },
@@ -15,11 +16,11 @@ const coffeeSchema = new mongoose.Schema({
     variety: { type: String, enum: ['arabica', 'robust'] },
     size: { type: Number, required: true },
     process: { type: String },
-    intensity: { type: String, enum: ['mild', 'balanced', 'intense/bold'], required: true },
+    intensity: { type: String, enum: ['mild', 'balanced', 'bold'], required: true },
     price: { type: Number, required: true }
 });
 
 // Create Coffee model
-const Coffee = mongoose.model('Coffee', coffeeSchema);
+const Coffee = mongoose.model('coffees', coffeeSchema);
 
 module.exports = Coffee;

@@ -1,0 +1,18 @@
+<!-- views/coffees.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= roastery %> Coffees</title>
+</head>
+<body>
+    <h1><%= roastery %> Coffees</h1>
+    <ul>
+        <% coffees.forEach(coffee => { %>
+            <li><%= coffee.name %> - <%= coffee.flavorProfile %></li>
+        <% }) %>
+    </ul>
+</body>
+</html>

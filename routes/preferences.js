@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const Preferences = require('../models/preferences');
+const Coffee = require('../models/coffees.js');
 
 // GET route to render the preferences form page
 router.get('/', (req, res) => {
@@ -19,8 +20,21 @@ router.post('/', async (req, res) => {
         // Save preferences to the database
         await preferences.save();
 
+        const { brewingMethod, roastLevel, flavorProfile, origin, coffeeType, intensity, bonus } = req.body;
+
+        // Construct query based on user preferences
+        let query = { brewingMethod, roastLevel, origin, coffeeType, intensity };
+
+        // Handle bonus attribute if provided
+        if (bonus) {
+            // Adjust query based on bonus attribute
+        }
+
+        // Query MongoDB to find matching coffees
+        const matchingCoffees = await Coffee.find(query);
+
         // Redirect to success page
-        res.render('result', { message: 'Preferences saved successfully!' });
+        res.render('result', { matchingCoffees });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');

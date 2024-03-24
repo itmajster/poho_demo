@@ -19,10 +19,12 @@ require('./config/db');
 // Import route handlers
 const indexRoutes = require('./routes/index');
 const preferencesRoutes = require('./routes/preferences');
+const roasteriesRoutes = require('./routes/roasteries');
 
 // Use route handlers
 app.use('/', indexRoutes);
 app.use('/preferences', preferencesRoutes);
+app.use('/roasteries', roasteriesRoutes);
 
 // Define port
 const PORT = process.env.PORT || 3000;

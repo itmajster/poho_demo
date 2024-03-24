@@ -7,7 +7,7 @@ const preferencesSchema = new mongoose.Schema({
     brewingMethod: { type: String, required: true },
     coffeeExperienceLevel: { type: String, required: true },
     roastLevel: { type: String, required: true },
-    flavorProfile: [{ type: String }],
+    flavorProfile: { type: String, required: true },
     origin: { type: String, required: true },
     coffeeType: { type: String, required: true },
     intensity: { type: String, required: true },
