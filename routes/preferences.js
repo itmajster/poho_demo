@@ -1,9 +1,8 @@
-// routes/preferences.js
-
 const express = require('express');
 const router = express.Router();
 const Preferences = require('../models/preferences');
 const Coffee = require('../models/coffees.js');
+const flavorProfiles = require('../models/flavorProfiles.js');
 
 // GET route to render the preferences form page
 router.get('/', (req, res) => {
@@ -30,11 +29,18 @@ router.post('/', async (req, res) => {
             // Adjust query based on bonus attribute
         }
 
+        const selectedFlavorProfile = flavorProfile.split('/');
+        const xxx = matchingCoffees.split('/');
+        // Construct a regular expression pattern to match any of the selected flavors
+        const flavorProfileRegex = new RegExp(selectedFlavorProfile.join('|'));
+        // Add flavor profile search to the query
+        //query.flavorProfile = flavorProfileRegex;
+
         // Query MongoDB to find matching coffees
         const matchingCoffees = await Coffee.find(query);
 
         // Redirect to success page
-        res.render('result', { matchingCoffees });
+        res.render('result', { matchingCoffees,selectedFlavorProfile,flavorProfileRegex });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
