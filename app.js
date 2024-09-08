@@ -2,12 +2,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 // Initialize Express app
 const app = express();
 
 // Set view engine
 app.set('view engine', 'ejs');
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -19,28 +19,16 @@ router.post('/', async (req, res) => {
         // Save preferences to the database
         await preferences.save();
 
-        const { brewingMethod, roastLevel, flavorProfile, origin, coffeeType, intensity, bonus } = req.body;
+        const { brewingMethod, roastLevel, flavorProfile, origin, coffeeType, intensity } = req.body;
 
         // Construct query based on user preferences
         let query = { brewingMethod, roastLevel, origin, coffeeType, intensity };
-
-        // Handle bonus attribute if provided
-        if (bonus) {
-            // Adjust query based on bonus attribute
-        }
-
-        const selectedFlavorProfile = flavorProfile.split('/');
-        const xxx = matchingCoffees.split('/');
-        // Construct a regular expression pattern to match any of the selected flavors
-        const flavorProfileRegex = new RegExp(selectedFlavorProfile.join('|'));
-        // Add flavor profile search to the query
-        //query.flavorProfile = flavorProfileRegex;
 
         // Query MongoDB to find matching coffees
         const matchingCoffees = await Coffee.find(query);
 
         // Redirect to success page
-        res.render('result', { matchingCoffees,selectedFlavorProfile,flavorProfileRegex });
+        res.render('result', { matchingCoffees });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');

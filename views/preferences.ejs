@@ -5,154 +5,303 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee Preferences</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
-        select, button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .back-btn {
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/preferences.css">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    <script src="/js/preferences.js" defer></script>
+
+
 </head>
 <body>
     <div class="container">
-        <h1>Coffee Preferences</h1>
-        <form action="/preferences" method="POST">
-            <label for="brewingMethod">Brewing Method:</label>
-            <select name="brewingMethod" id="brewingMethod">
-                <option value="filter">Filter</option>
-                <option value="pods">Pods</option>
-                <option value="espresso">Espresso</option>
-                <option value="moka">Moka</option>
-                <option value="batch brew">Batch Brew</option>
-                <option value="french press">French Press</option>
-                <option value="cascara/tea">Cascara/Tea</option>
-            </select>
-            <br>
+        
+        <form data-multi-step class="multi-step-form" action="/preferences" method="POST">
+            <div class="card" data-step>
 
-            <label for="coffeeExperienceLevel">Coffee Experience Level:</label>
-            <select name="coffeeExperienceLevel" id="coffeeExperienceLevel">
-                <option value="newbie">Newbie</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-                <option value="nerd">Nerd</option>
-            </select>
-            <br>
+                <div class="main-card">
+                    <div class="head-title">
+                        <h2 class="title">Ako si pripravuješ svoju kávu?</h2>
+                        <a href="/" class="close"></a>
+                    </div>
+                    
+                    <div class="options">
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="brewingMethod" id="brewingMethod" value="espresso" data-next>
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Espresso</div>
+                        </label>
 
-            <label for="roastLevel">Roast Level:</label>
-            <select name="roastLevel" id="roastLevel">
-                <option value="light">Light</option>
-                <option value="medium">Medium</option>
-                <option value="dark">Dark</option>
-                <option value="i do not care">I Don't Care</option>
-            </select>
-            <br>
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="brewingMethod" id="brewingMethod" value="filter" data-next>
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Filtrovaná káva</div>
+                        </label>
 
-            <label for="flavorProfile">Flavor Profile:</label>
-            <select name="flavorProfile" id="flavorProfile">
-                <option value="regular/classic">Regular/Classic</option>
-                <option value="fruity">Fruity</option>
-                <option value="chocolate/sweat">Chocolate/Sweet</option>
-                <option value="floral">Floral</option>
-                <option value="acid">Acid</option>
-                <option value="nutty">Nutty</option>
-            </select>
-            <br>
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="brewingMethod" id="brewingMethod" value="pods" data-next>
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Kapsule</div>
+                        </label>
 
-            <label for="origin">Origin:</label>
-            <select name="origin" id="origin">
-                <option value="africa">Africa</option>
-                <option value="south america">South America</option>
-                <option value="asia">Asia</option>
-                <option value="central america">Central America</option>
-                <option value="no preferencies">No Preferences</option>
-            </select>
-            <br>
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="brewingMethod" id="brewingMethod" value="cascara/tea" data-next>
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Keď už tak cascara</div>
+                        </label>
+                    </div>
 
-            <label for="coffeeType">Coffee Type:</label>
-            <select name="coffeeType" id="coffeeType">
-                <option value="regular">Regular</option>
-                <option value="decaf">Decaf</option>
-            </select>
-            <br>
+                    <div class="buttons">
+                        <button type="button" class="click-next" data-next></button>
+                    </div>
+                    <!-- Progress bar -->
+                    <div class="progress-bar">
+                        <div class="progress-step" id="progress-step-1">Príprava</div>
+                        <div class="progress-step">Praženie</div>
+                        <div class="progress-step">Skúsenosť</div>
+                        <div class="progress-step">Chuťový profil</div>
+                        <div class="progress-step">Pôvod</div>
+                        <div class="progress-step">Intenzita</div>
+                    </div>
+                </div>
+                    
+                    <div class="card-image-div">
+                        <img src="/images/brewing.png" class="card-image">
+                    </div>
+            </div>
 
-            <label for="intensity">Intensity:</label>
-            <select name="intensity" id="intensity">
-                <option value="mild">Mild</option>
-                <option value="balanced">Balanced</option>
-                <option value="bold">Intense/Bold</option>
-                <option value="whatever">Whatever</option>
-            </select>
-            <br>
+            <div class="card" data-step>
+                <div class="head-title">
+                    <h2 class="title">Aký stupeň praženia uprednostníš?</h2>
+                    <a href="/" class="close"></a>
+                </div>
 
-            <label for="coffeePerDay">Coffee Per Day:</label>
-            <select name="coffeePerDay" id="coffeePerDay">
-                <option value="one">One</option>
-                <option value="two">Two</option>
-                <option value="more">More</option>
-            </select>
-            <br>
+                <div class="options">
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="roastLevel" id="roastLevel" value="light">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Svetlé</div>
+                    </label>
 
-            <label for="bonus">Bonus:</label>
-            <select name="bonus" id="bonus">
-                <option value="surprise me I want to discover new flavors">Surprise me, I want to discover new flavors</option>
-                <option value="ok i want to try maybe one more similar coffee">OK, I want to try maybe one more similar coffee</option>
-                <option value="Nah I am boring and will stick with one coffee">Nah, I am boring and will stick with one coffee</option>
-            </select>
-            <br>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="roastLevel" id="roastLevel" value="medium">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Stredné</div>
+                    </label>
 
-            <!-- Add more preference fields here if needed -->
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="roastLevel" id="roastLevel" value="dark">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Tmavé</div>
+                    </label>
 
-            <button type="submit">Submit Preferences</button>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="roastLevel" id="roastLevel" value="random">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Je mi to jedno</div>
+                    </label>
+                </div>
+
+                <div class="buttons">
+                    <button type="button" class="click-back" data-previous></button>
+                    <button type="button" class="click-next" data-next></button>
+                </div>
+            </div>
+
+            <div class="card" data-step>
+                <div class="head-title">
+                    <h2 class="title">Pochvaľ sa ako sa vyznáš v káve.</h2>
+                    <a href="/" class="close"></a>
+                </div>
+                
+                <div class="options">
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="coffeeExperienceLevel" id="coffeeExperienceLevel" value="newbie">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Nováčik</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="coffeeExperienceLevel" id="coffeeExperienceLevel" value="intermediate">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Niečo už ovládam</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="coffeeExperienceLevel" id="coffeeExperienceLevel" value="advanced">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Pokročilý</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="coffeeExperienceLevel" id="coffeeExperienceLevel" value="nerd">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Nerd</div>
+                    </label>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="click-back" data-previous></button>
+                    <button type="button" class="click-next" data-next></button>
+                </div>
+            </div>
+
+            <div class="card" data-step>
+                <div class="head-title">
+                    <div>
+                        <h2 class="title">Aké chute máš najradšej? Alebo radšej objavuješ?</h2>
+                        <h3 class="sub-title">Kľudne si vyber viacero možností.</h3>
+                    </div>
+                    <a href="/" class="close"></a>
+                </div>
+
+                <div class="options">
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="flavorProfile" id="flavorProfile" value="regular/classic">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Chcem takú chuť akú má káva</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="flavorProfile" id="flavorProfile" value="fruity">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Ovocie, ovocie a ovocie</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="flavorProfile" id="flavorProfile" value="chocolate/sweet">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Sladké ako čokoláda</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="flavorProfile" id="flavorProfile" value="acid">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Hlavne nech je to kyslé</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="flavorProfile" id="flavorProfile" value="random">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Prekvap ma, chcem experimentovať</div>
+                    </label>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="click-back" data-previous></button>
+                    <button type="button" class="click-next" data-next></button>
+                </div>
+            </div>
+
+            <div class="card" data-step>
+                <div class="head-title">
+                    <div>
+                        <h2 class="title">Na pôvode kávy záleži.</h2>
+                        <h3 class="sub-title">Kľudne si vyber viacero možností.</h3>
+                    </div>
+                    <a href="/" class="close"></a>
+                </div>
+                
+                <div class="options">
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="origin" id="origin" value="africa">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Afrika</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="origin" id="origin" value="south america">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Južná amerika</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="origin" id="origin" value="central america">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Stredná amerika</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="origin" id="origin" value="asia">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Ázia</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="checkbox" class="rad-input" name="origin" id="origin" value="random">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Necham sa prekvapiť</div>
+                    </label>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="click-back" data-previous></button>
+                    <button type="button" class="click-next" data-next></button>
+                </div>
+            </div>
+
+            <div class="card" data-step>
+                <div class="head-title">
+                    <div>
+                        <h2 class="title">Vyváženosť a intezita chute je dôležitá.</h2>
+                        <h3 class="title">Ako by mala chutiť tvoja káva?</h3>
+                    </div>
+                    <a href="/" class="close"></a>
+                </div>
+
+                <div class="options">
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="intensity" id="intensity" value="mild">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Jemná</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="intensity" id="intensity" value="balanced">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Vyvážena</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="intensity" id="intensity" value="bold">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Intenzívna</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="intensity" id="intensity" value="random">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Na intenzite mi vôbec nezáleží</div>
+                    </label>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="click-back" data-previous></button>
+                    <button type="button" class="click-next" data-next></button>
+                </div>
+            </div>
+
+            <div class="card" data-step>
+                <div class="head-title">
+                    <h2 class="title">Posledná dôležitá vec: kofeín.</h2>
+                    <a href="/" class="close"></a>
+                </div>
+                
+                <div class="options">
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="coffeeType" id="coffeeType" value="regular">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Regular</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="coffeeType" id="coffeeType" value="decaf">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Decaf</div>
+                    </label>
+                </div>
+
+                <h3 class="title">Aké zrná si praješ doručiť?</h3>
+                <div class="options">
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="grinding" id="grinding" value="beans">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Celé zrná</div>
+                    </label>
+                    <label class="rad-label">
+                        <input type="radio" class="rad-input" name="grinding" id="grinding" value="grinded">
+                        <div class="rad-design"></div>
+                        <div class="rad-text">Pomleté zrná</div>
+                    </label>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="click-back" data-previous></button>
+                    <button type="submit">Submit Preferences</button>
+                </div>
+            </div>
+
+            
         </form>
     </div>
 
-    <div class="back-btn">
-        <a href="/">
-            <button>Back to Home</button>
-        </a>
-    </div>
-    
 </body>
 </html>
