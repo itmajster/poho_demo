@@ -9,6 +9,7 @@ body {
     bottom: 0;
     right: 0;
     overflow: auto;
+    overflow: hidden; /* Changed to hidden to avoid scrollbars */
 }
 .container {
     position: fixed;
@@ -17,6 +18,7 @@ body {
     bottom: 0;
     right: 0;
     overflow: auto;
+    overflow: hidden; /* Changed to hidden to avoid scrollbars */
 }
 .card {
     background-color: rgb(223, 212, 212);
@@ -26,25 +28,47 @@ body {
     width: 100%;
     height: 100%;
     background:rgba(255,255,255,0.5);
+    display: none;
+    top: 0;
+    left: 0;
+}
+.top-label {
     display: flex;
+    flex-direction: row;
+    height: 10vh; /* 10% of viewport height */
+    justify-content: space-between;
+    width: 100%;
+    background-color: white; /* Example background color */
+    font-size: 1.2rem;
+    border-bottom: 0.4px solid black
+}
+.main-content {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-grow: 1; /* Ensures this fills the remaining height after top-label */
+    width: 100%;
+    height: 90vh;
 }
 .main-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: rgb(223, 212, 212);
-    padding: .5rem;
-    max-width: 60%;
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 90vh;
     background:rgba(255,255,255,0.5);
 }
 .card-image-div {
-    width: 40%;
-    height: 100%;
+    width: 50%;
+    height: 90vh;
+    background-color: #fff; /* Example background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .card-image{
     width: 100%;
+    height: auto;
 }
 
 .form-group {
@@ -77,15 +101,16 @@ body {
 
 .card.active {
     animation: slide 250ms 125ms ease-in-out both;
-    width: 100%;
-    height: 100%;
     background:rgba(255,255,255,0.5);
+    display: flex;
+    
+    width: 100vw; /* 100% of viewport width */
+    height: 90vh; /* 90% of viewport height */
 }
 
 .multi-step-form {
     overflow: hidden;
-    position: relative;
-    height: 100%;
+    height: 90vh;
 }
 
 .hide {
@@ -102,45 +127,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 3vh;
 }
 
 .progress-bar{
     position: relative;
     display: flex;
     justify-content: center;
-    padding: 2.5rem;
+    padding: 3vh;
+    width: 100%;
 }
 .progress-step{
-    padding: .4rem;
-    margin: .2rem;
-    border: solid rgba(255, 255, 255, 0.5);
+    padding: .4vh;
+    font-size: medium;
+    color: grey;
+    padding-left: 1vh;
+    padding-right: 1vh;
 }
 
-@keyframes slide {
-    0% {
-        transform: translateX(200%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes fade {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(.75);
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0);
-    }
-}
 
 /* Radio buttons */
 .rad-label {
@@ -175,7 +179,6 @@ body {
     width: 22px;
     height: 22px;
     border-radius: 100px;
-
     background: linear-gradient(to right bottom, hsl(160, 5%, 88%), #B22E5B);
     position: relative;
 }
@@ -211,38 +214,6 @@ body {
     font-weight: bold;
 }
 
-.click-next{
-    padding: 10px;
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    margin: .5rem;
-}
-.click-next:hover{
-    transform: rotate(315deg);
-    transition: transform .4s ease-in-out;
-    border-right: solid #B22E5B;
-    border-bottom: solid #B22E5B;
-    cursor: pointer;
-}
-.click-back{
-    padding: 10px;
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(135deg);
-    margin: .5rem;
-}
-.click-back:hover{
-    transform: rotate(-225deg);
-    transition: transform .4s ease-in-out;
-    border-right: solid #B22E5B;
-    border-bottom: solid #B22E5B;
-    cursor: pointer;
-}
 .title{
     font-size: 200;
     font-weight: bold; 
@@ -260,32 +231,112 @@ body {
     justify-content: space-between;
 }
 
-.close{
-    position: absolute;
-    right: 32px;
-    top: 32px;
-    width: 32px;
-    height: 32px;
-    color: black;
-    size: 50;
+.active-progress {
+    border: solid #B8C5D6;
+    border-radius: 30px;
+    /* Add other styles specific to the active progress step */
 }
 
-.close:hover{
-    transform: rotate(270deg);
-    transition: transform .4s ease-in-out;
+.button-back {
+    background-color: transparent; /* Make background transparent */
+    border: none; /* Remove default button borders */
+    padding: 8px; /* Add padding for click area */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    display: inline-flex; /* Align the SVG properly */
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
+    padding-left: 4vh;
 }
 
-.close:before, .close:after {
-    position: absolute;
-    left: 15px;
-    content: ' ';
-    height: 33px;
-    width: 2px;
-    background-color: black;
-  }
-.close:before {
-transform: rotate(45deg);
+/* Hover and active effects */
+.button-back:hover {
+    transform: scale(1.1); /* Slightly scale the button on hover */
 }
-.close:after {
-transform: rotate(-45deg);
+
+.button-back:active {
+    transform: scale(0.9); /* Shrink the button on click */
+}
+
+.button-back svg {
+    width: 55px;
+    height: 55px;
+    fill: none;
+    stroke: currentColor; /* Set the stroke color */
+}
+
+.button-close {
+    background-color: transparent; /* Make background transparent */
+    border: none; /* Remove default button borders */
+    padding: 8px; /* Add padding for click area */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    display: inline-flex; /* Align the SVG properly */
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
+    padding-right: 4vh;
+}
+
+/* Hover and active effects */
+.button-close:hover {
+    transform: scale(1.1); /* Slightly scale the button on hover */
+}
+
+.button-close:active {
+    transform: scale(0.9); /* Shrink the button on click */
+}
+
+.button-close svg {
+    width: 55px;
+    height: 55px;
+    fill: none;
+    stroke: currentColor; /* Set the stroke color */
+}
+
+/* CSS */
+.click-next {
+  appearance: none;
+  font-family: 'Quicksand';
+  background-color: transparent;
+  border: 2px solid #963b59;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 40%;
+  height: 5vh;
+  will-change: transform;
+}
+
+.click-next:hover {
+  color: #fff;
+  background: linear-gradient(to right bottom, hsl(160, 5%, 88%), #B22E5B);
+  border-width: 0px;
+  
+}
+
+.click-next:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.click-next:disabled {
+    background-color: #ccc;   /* Grey background for disabled state */
+    cursor: not-allowed;      /* Show "not allowed" cursor */
+    border-width: 0px;
+    pointer-events: none;
 }
